@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Мой Технопарк</string>
+    <string name="events">Объявления</string>
+    <string name="request">Заявки</string>
+    <string name="complaints">Подать жалобу</string>
+    <string name="rent">Аренда помещения</string>
+    <string name="cleaning">Уборка помещения</string>
+    <string name="residents">Резиденты</string>
+    <string name="support">Поддержка</string>
+    <string name="menu">Меню</string>
+    <string name="registration">Регистрация</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="post_request">POST request</string>
+    <string name="title_activity_sign_in">Войти</string>
+
+
+    <string name="title_activity_mainac">Mainac</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>

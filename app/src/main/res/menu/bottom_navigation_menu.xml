@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_item_events"
+        android:icon="@drawable/ic_events_selector"
+        android:title="" />
+    <item
+        android:id="@+id/nav_item_request"
+        android:icon="@drawable/ic_request_selector"
+        android:title="" />
+    <item
+        android:id="@+id/nav_item_residents"
+        android:icon="@drawable/ic_residents_selector"
+        android:title="" />
+    <item
+        android:id="@+id/nav_item_support"
+        android:icon="@drawable/ic_meropriyatie_selector"
+        android:title="" />
+    <item
+        android:id="@+id/nav_item_menu"
+        android:icon="@drawable/ic_menu_selector"
+        android:title="" />
+
+</menu>
