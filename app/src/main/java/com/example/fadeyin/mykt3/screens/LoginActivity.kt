@@ -8,6 +8,12 @@ import android.widget.EditText
 import com.example.fadeyin.mykt3.screens.notice.noticeActivity
 import com.example.fadeyin.mykt3.R
 import com.example.fadeyin.mykt3.models.UserAPIinterface
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import org.reactivestreams.Subscriber
+
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -37,8 +43,24 @@ class LoginActivity : AppCompatActivity() {
 
             val apiService = UserAPIinterface.create()
             apiService.registration(email,password,first_name,last_name,patronymic,position,about_me,phone_number)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+            Observable.just(Result)
+                .map({ s -> potentialException(s) })
+                .map({ s -> anotherPotentialException(s) })
+                .subscribe(object : Subscriber<String> {
+                    override fun onNext(s: String) {
+                        println(s)
+                    }
 
+                    fun onCompleted() {
+                        println("Completed!")
+                    }
 
+                    override fun onError(e: Throwable) {
+                        println("Ouch!")
+                    }
+                })
             val mainIntent = Intent(this,noticeActivity::class.java)
             startActivity(mainIntent)
         }
