@@ -17,7 +17,8 @@
             android:text="Бронирование"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="60dp" app:layout_constraintEnd_toStartOf="@+id/btn_complaints"
+            android:layout_marginTop="60dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_complaints"
             style="@style/Widget.AppCompat.Button.Colored"
             android:backgroundTint="@color/design_default_color_primary"/>
 

@@ -18,6 +18,11 @@ import android.view.Gravity
 import android.widget.Toast
 import com.example.fadeyin.mykt3.models.AuthInfo
 import com.example.fadeyin.mykt3.models.ResultLogin
+import android.R.id.edit
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
+import android.R.attr.password
+import android.content.Context
 
 
 class LoginActivity : AppCompatActivity() {
@@ -29,7 +34,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         editTextEmail = findViewById(R.id.email) as EditText
         editTextPassword = findViewById(R.id.password) as EditText
         loginBtn = findViewById(R.id.btnLogin)
@@ -52,16 +56,12 @@ class LoginActivity : AppCompatActivity() {
                     APIConfig.token = result.auth.token
                     logininfo = result
                     AuthInfo.message = result.message
-
+                    val preferences = getSharedPreferences("AUTHENTICATION", Context.MODE_PRIVATE)
+                    val editor = preferences.edit()
+                    editor.putString("AccessToken", result.auth.token)
+                    editor.apply()
                     val mainIntent = Intent(this, noticeActivity::class.java)
                     startActivity(mainIntent)
-                    val toast = Toast.makeText(
-                    applicationContext,
-                    AuthInfo.message,
-                    Toast.LENGTH_SHORT
-                )
-                    toast.setGravity(Gravity.CENTER, 0, 0)
-                    toast.show()
                 }, { error ->
                     error.printStackTrace()
                 }
