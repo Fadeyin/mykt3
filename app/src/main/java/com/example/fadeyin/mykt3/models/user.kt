@@ -1,6 +1,7 @@
 package com.example.fadeyin.mykt3.models
 
 
+import android.content.Context
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
@@ -15,6 +16,7 @@ import retrofit2.http.GET
 import java.io.IOException
 import okhttp3.OkHttpClient
 import okhttp3.Request
+
 
 
 interface UserAPIinterface {
@@ -33,16 +35,15 @@ interface UserAPIinterface {
 
     @FormUrlEncoded
     @POST("users/obtain_token/")
-    fun auth(
-             @Field("email") email: String,
+    fun auth(@Field("email") email: String,
              @Field("password") password: String
-
-
     ): Observable<ResultLogin>
 
     @FormUrlEncoded
     @GET("communication/get_visibel_events/")
-    fun getNotice(): Observable<ResultNotice>
+    fun getNotice(
+
+    ):Observable<List<ResultNotice>>
 
     /**
      *
@@ -71,9 +72,10 @@ interface UserAPIinterface {
         }
 
         fun  createServiceWithAuth(): UserAPIinterface {
+
             val interceptor = Interceptor { chain ->
                 val request = chain.request().newBuilder()
-                    .addHeader("Authorization:", "Baerer"+ APIConfig.token)
+                    .header("Authorization", "Baerer " + APIConfig.token)
                     .build()
 
                 chain.proceed(request)
@@ -81,7 +83,6 @@ interface UserAPIinterface {
             val httpClient = OkHttpClient.Builder()
             httpClient.addInterceptor(interceptor)
             val client = httpClient.build()
-
             val retrofit = Retrofit.Builder()
                 .baseUrl(APIConfig.BASE_URL)
                 .client(client)
