@@ -19,4 +19,12 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="name">Имя</string>
+    <string name="Last_name">Фамилия</string>
+    <string name="Patronymic">Отчество</string>
+    <string name="Reg">Зарегистрироваться</string>
+    <string name="login">Войти</string>
+    <string name="entery">Вход</string>
+    <string name="position">Должность</string>
+    <string name="about_me">О себе</string>
 </resources>

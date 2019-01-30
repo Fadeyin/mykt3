@@ -1,29 +1,26 @@
 package com.example.fadeyin.mykt3.models
 
-class UserInfoResponse(val data: user)
-
-class TokenResponse(
+data class ResultLogin (
     val status : String,
-    val auth : token,
-    val data: usernameresp)
-
-data class token (
-    val token: String?
+    val auth : Token,
+    val message: String,
+    val items: Data
 )
 
-data class usernameresp(
+data class Token (
+    val token: String
+)
+
+data class Data(
     val id: String,
-    val username: String?
+    val username: String
 )
 
-data class user(
-    val id: Int,
-    val email: String,
-    val password: String,
-    val first_name: String,
-    val last_name: String,
-    val patronymic: String,
-    val position: String,
-    val about_me: String,
-    val phone_number: Long?
+data class ResultNotice (
+    val pk: Int,
+    val title: String,
+    val description: String,
+    val author: String,
+    val time_publication: String,
+    val hide: Boolean
 )

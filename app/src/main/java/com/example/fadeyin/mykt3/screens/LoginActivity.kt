@@ -1,26 +1,31 @@
 package com.example.fadeyin.mykt3.screens
 
+import android.util.Log
+import io.reactivex.schedulers.Schedulers
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+
 import android.widget.Button
 import android.widget.EditText
 import com.example.fadeyin.mykt3.screens.notice.noticeActivity
 import com.example.fadeyin.mykt3.R
+import com.example.fadeyin.mykt3.models.APIConfig
 import com.example.fadeyin.mykt3.models.UserAPIinterface
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_login.view.*
 import org.reactivestreams.Subscriber
-
+import android.view.Gravity
+import android.widget.Toast
+import com.example.fadeyin.mykt3.models.AuthInfo
+import com.example.fadeyin.mykt3.models.ResultLogin
 
 
 class LoginActivity : AppCompatActivity() {
-
-    private var editTextEmail: EditText? = null
+        private var editTextEmail: EditText? = null
     private var editTextPassword: EditText? = null
     private lateinit var loginBtn : Button
-
+    private lateinit var toRegBtn : Button
+    var logininfo : ResultLogin? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -28,41 +33,40 @@ class LoginActivity : AppCompatActivity() {
         editTextEmail = findViewById(R.id.email) as EditText
         editTextPassword = findViewById(R.id.password) as EditText
         loginBtn = findViewById(R.id.btnLogin)
-        val email = "faded@gmail.com"
-        val password = "abcd1234"
-        val first_name = "asd"
-        val last_name = "asd"
-        val patronymic = "asd"
-        val position = "Proger"
-        val about_me= "asd"
-        val phone_number = 2333321322
+        toRegBtn = findViewById(R.id.btnToReg)
+        toRegBtn.setOnClickListener{
+            val mainIntent = Intent(this,RegActivity::class.java)
+            startActivity(mainIntent)
+        }
 
         loginBtn.setOnClickListener {
-            val email1 = editTextEmail?.text.toString()
-            val password2 = editTextPassword?.text.toString()
+            val email = editTextEmail?.text.toString()
+            val password = editTextPassword?.text.toString()
 
-            val apiService = UserAPIinterface.create()
-            apiService.registration(email,password,first_name,last_name,patronymic,position,about_me,phone_number)
+            val apiService = UserAPIinterface.createService()
+            apiService.auth(email,password)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-            Observable.just(Result)
-                .map({ s -> potentialException(s) })
-                .map({ s -> anotherPotentialException(s) })
-                .subscribe(object : Subscriber<String> {
-                    override fun onNext(s: String) {
-                        println(s)
-                    }
+                .subscribe({
+                    result ->
+                    Log.d("Result", "There are ${result.status}")
+                    APIConfig.token = result.auth.token
+                    logininfo = result
+                    AuthInfo.message = result.message
 
-                    fun onCompleted() {
-                        println("Completed!")
-                    }
+                    val mainIntent = Intent(this, noticeActivity::class.java)
+                    startActivity(mainIntent)
+                    val toast = Toast.makeText(
+                    applicationContext,
+                    AuthInfo.message,
+                    Toast.LENGTH_SHORT
+                )
+                    toast.setGravity(Gravity.CENTER, 0, 0)
+                    toast.show()
+                }, { error ->
+                    error.printStackTrace()
+                }
+                )
 
-                    override fun onError(e: Throwable) {
-                        println("Ouch!")
-                    }
-                })
-            val mainIntent = Intent(this,noticeActivity::class.java)
-            startActivity(mainIntent)
         }
     }
 

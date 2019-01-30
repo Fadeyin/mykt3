@@ -1,106 +1,253 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
-        tools:context=".screens.RegActivity">
-
-    <TextView
-            android:id="@+id/appName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/app_name"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-            android:id="@+id/textSignIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Вход"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appName" />
-
-    <EditText
-            android:id="@+id/email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@color/white_grey"
-            android:elevation="6dp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textEmail" />
-
-    <EditText
-            android:id="@+id/password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@color/white_grey"
-            android:elevation="6dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textPassword" />
-
-    <Button
-
-            android:id="@+id/btnLogin"
-            android:layout_width="167dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="64dp"
-            android:elevation="4dp"
-            android:text="@string/registration"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
-            app:layout_constraintTop_toTopOf="@+id/password" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   android:id="@+id/scroll"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark">
+    <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            tools:context=".screens.RegActivity"
+            android:layout_height="600dp">
 
 
-    <TextView
-            android:id="@+id/textEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/email"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textSignIn" />
+        <TextView
+                android:id="@+id/appName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-            android:id="@+id/textPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/password"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/email"
-    />
-</android.support.constraint.ConstraintLayout>
+        <TextView
+                android:id="@+id/textSignIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Вход"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appName"/>
+
+        <TextView
+                android:id="@+id/textEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:textColor="@color/white"
+                android:layout_marginTop="50dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textSignIn"/>
+
+        <EditText
+                android:id="@+id/emailReg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@color/white_grey"
+                android:elevation="6dp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textEmail"/>
+        <TextView
+                android:id="@+id/textPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/password"
+                android:textColor="@color/white"
+                android:layout_marginTop="32dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/emailReg"/>
+
+        <EditText
+                android:id="@+id/passwordReg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@color/white_grey"
+                android:elevation="6dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textPassword"/>
+
+        <TextView
+                android:id="@+id/textFirst_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/name"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/passwordReg"
+                android:textAlignment="textStart"/>
+
+        <EditText
+                android:id="@+id/first_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@color/white_grey"
+                android:elevation="6dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textFirst_name"/>
+
+        <TextView
+                android:id="@+id/textLast_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/Last_name"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/first_name"
+                android:textAlignment="textStart"/>
+
+        <EditText
+                android:id="@+id/last_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@color/white_grey"
+                android:elevation="6dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textLast_name"/>
+
+        <TextView
+                android:id="@+id/textPatronymic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/Patronymic"
+                android:textColor="@color/white"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/last_name"/>
+
+        <EditText
+                android:id="@+id/patronymic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@color/white_grey"
+                android:elevation="6dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textPatronymic"/>
+
+        <TextView
+                android:id="@+id/textPosition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/position"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/patronymic"
+                android:textAlignment="textStart"/>
+
+        <EditText
+                android:id="@+id/position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@color/white_grey"
+                android:elevation="6dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textPosition"/>
+
+
+        <TextView
+                android:id="@+id/textPhone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Номер телефона"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/position"
+                android:textAlignment="textStart"/>
+
+        <EditText
+                android:id="@+id/phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@color/white_grey"
+                android:elevation="6dp"
+                android:ems="10"
+                android:inputType="phone"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textPhone_number"/>
+
+
+        <Button
+                android:id="@+id/btnReg"
+                android:layout_width="167dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="44dp"
+                android:elevation="4dp"
+                android:text="@string/registration"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone_number"
+                app:layout_constraintTop_toTopOf="@+id/phone_number"/>
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
