@@ -16,7 +16,7 @@ import retrofit2.http.GET
 import java.io.IOException
 import okhttp3.OkHttpClient
 import okhttp3.Request
-
+import retrofit2.Response
 
 
 interface UserAPIinterface {
@@ -39,7 +39,7 @@ interface UserAPIinterface {
              @Field("password") password: String
     ): Observable<ResultLogin>
 
-    @FormUrlEncoded
+
     @GET("communication/get_visibel_events/")
     fun getNotice(
 
@@ -75,7 +75,7 @@ interface UserAPIinterface {
 
             val interceptor = Interceptor { chain ->
                 val request = chain.request().newBuilder()
-                    .header("Authorization", "Baerer " + APIConfig.token)
+                    .addHeader("Authorization", "Bearer " + APIConfig.token)
                     .build()
 
                 chain.proceed(request)
@@ -84,6 +84,8 @@ interface UserAPIinterface {
             httpClient.addInterceptor(interceptor)
             val client = httpClient.build()
             val retrofit = Retrofit.Builder()
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(APIConfig.BASE_URL)
                 .client(client)
                 .build()

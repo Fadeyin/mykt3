@@ -27,4 +27,7 @@
     <string name="entery">Вход</string>
     <string name="position">Должность</string>
     <string name="about_me">О себе</string>
+
+    <string name="number_list">Список чисел</string>
+    <string name="empty">Нет данных</string>
 </resources>
