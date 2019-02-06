@@ -1,15 +1,19 @@
 package com.example.fadeyin.mykt3.screens.notice
 
+import android.content.Context
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import com.example.fadeyin.mykt3.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.fadeyin.mykt3.models.ResultNotice
 import kotlinx.android.synthetic.main.notice_item.view.*
 
-class NoticeAdapter(val noticeList: List<ResultNotice>): RecyclerView.Adapter<NoticeAdapter.ViewHolder>() {
+class NoticeAdapter(val noticeList: ArrayList<ResultNotice>): RecyclerView.Adapter<NoticeAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val v = LayoutInflater.from(p0.context).inflate(R.layout.notice_item, p0, false)
@@ -23,8 +27,6 @@ class NoticeAdapter(val noticeList: List<ResultNotice>): RecyclerView.Adapter<No
         p0.txtTime?.text = noticeList[p1].time_publication
     }
 
-
-
     override fun getItemCount(): Int {
         return noticeList.size
     }
@@ -36,4 +38,16 @@ class NoticeAdapter(val noticeList: List<ResultNotice>): RecyclerView.Adapter<No
         val txtAuthor = itemView.findViewById<TextView>(R.id.author)
 
     }
+
+}
+fun getListNotice(goNoticeInfo: List<ResultNotice>, rv: RecyclerView, a: Context) {
+    Log.d("Result", "Success 3")
+    rv.layoutManager = LinearLayoutManager(a, LinearLayoutManager.VERTICAL ,false)
+    Log.d("Result", "Success 4")
+    val noticeList = ArrayList<ResultNotice>()
+    noticeList.addAll(goNoticeInfo)
+    val adapter = NoticeAdapter(noticeList)
+    rv.adapter = adapter
+    adapter.notifyDataSetChanged()
+
 }

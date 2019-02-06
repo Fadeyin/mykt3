@@ -7,8 +7,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 
-import android.view.Gravity
-import android.widget.Toast
 import com.example.fadeyin.mykt3.BaseActivity
 import com.example.fadeyin.mykt3.R
 import com.example.fadeyin.mykt3.models.APIConfig
@@ -23,13 +21,14 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_notice.*
+import android.widget.ProgressBar
+
+
+
 
 
 class noticeActivity :  BaseActivity(0) {
-    var noticeinfo : List<ResultNotice>? = null
-    val animals: ArrayList<String> = ArrayList()
 
-    var notice : String? = null
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +39,9 @@ class noticeActivity :  BaseActivity(0) {
             startActivity(LoginIntent)
         }
         setContentView(R.layout.activity_notice)
+        val rv = findViewById<RecyclerView>(R.id.rv_notice_list)
+        val progressBar = findViewById(R.id.progressBar) as ProgressBar
+        progressBar.visibility = ProgressBar.VISIBLE
         SetupBottomNavigation()
             APIConfig.token = token
             val apiService2 = UserAPIinterface.createServiceWithAuth()
@@ -47,21 +49,15 @@ class noticeActivity :  BaseActivity(0) {
             .subscribeOn(Schedulers.io())
             .subscribe({
                     result ->
-                noticeinfo = result
-                getListNotice(result)
+                Log.d("Result", "Success")
+                getListNotice(result,rv,this)
+                Log.d("Result", "Success 2")
+
             }, {error ->
                 Log.d("Result", "error")
                 error.printStackTrace()
             }
             )
-
-    }
-    fun getListNotice(goNoticeInfo: List<ResultNotice>) {
-        val rv = findViewById<RecyclerView>(R.id.rv_notice_list)
-        rv.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
-        val noticeList = ArrayList<ResultNotice>()
-        noticeList.addAll(goNoticeInfo)
-        var adapter = NoticeAdapter(noticeList)
-        rv.adapter = adapter
+        progressBar.visibility = ProgressBar.INVISIBLE
     }
 }
