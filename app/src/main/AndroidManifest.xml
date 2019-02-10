@@ -13,13 +13,13 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".screens.LoginActivity">
-
         </activity>
         <activity android:name=".screens.notice.noticeActivity">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
-            <category android:name="android.intent.category.LAUNCHER"/>
-        </intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".screens.menu.MenuActivity">
         </activity>
@@ -34,6 +34,10 @@
         <activity android:name=".screens.request.ComplaintsActivity">
         </activity>
         <activity android:name=".screens.request.BookingActivity">
+        </activity>
+        <activity android:name=".MainActivity">
+        </activity>
+        <activity android:name=".screens.request.CreateComplaint">
         </activity>
     </application>
 

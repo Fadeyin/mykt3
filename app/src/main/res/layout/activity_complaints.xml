@@ -5,7 +5,36 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".screens.request.ComplaintsActivity">
+        tools:context=".screens.notice.noticeActivity">
     <include layout="@layout/toolbar_navigation"/>
+    <ProgressBar
+            android:id="@+id/progressBar"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_complaints_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="50dp"/>
+    <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fab"
+            android:src="@drawable/ic_add_black_24dp"
+            app:backgroundTint="@color/yellow"
+            app:layout_constraintBottom_toBottomOf="@+id/rv_complaints_list"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_gravity="end|bottom"
+            app:elevation="@dimen/activity_horizontal_margin" android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"/>
     <include layout="@layout/bottom_navigation_view"/>
 </android.support.constraint.ConstraintLayout>

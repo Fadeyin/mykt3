@@ -15,7 +15,6 @@ class RequestActivity :  BaseActivity(1) {
         setContentView(R.layout.activity_request)
         SetupBottomNavigation()
     }
-
     fun goComplaints(view: View){
         val complaintsIntent = Intent(this, ComplaintsActivity::class.java)
         startActivity(complaintsIntent)
