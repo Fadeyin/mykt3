@@ -15,11 +15,13 @@ import android.widget.Toast
 import android.content.Context
 import com.example.fadeyin.mykt3.models.*
 import io.reactivex.android.schedulers.AndroidSchedulers
+import org.jetbrains.anko.alert
 
 
 class LoginActivity : AppCompatActivity() {
     private var editTextEmail: EditText? = null
     private var editTextPassword: EditText? = null
+    private var editTextUserName: EditText? = null
     private lateinit var loginBtn : Button
     private lateinit var toRegBtn : Button
     var logininfo : ResultLogin? = null
@@ -36,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
         }
         loginBtn.setOnClickListener {
             val email = editTextEmail?.text.toString()
+            val login = editTextEmail?.text.toString()
             val password = editTextPassword?.text.toString()
             if ((email == "" || password == "") || (!(emailValidator(email)))) {
                 if (email == "" || password == "") {
@@ -45,15 +48,14 @@ class LoginActivity : AppCompatActivity() {
                     viewToast("Неверно введен email")
                 }
             } else {
+
                 val apiService = UserAPIinterface.createService()
-                apiService.auth(email, password)
+                apiService.auth(login, password)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ result ->
-                        Log.d("Result", "There are ${result.status}")
+                        Log.d("Result123", "There are ${result.message}")
                         APIConfig.token = result.auth.token
-                        logininfo = result
-                        AuthInfo.message = result.message
                         val preferences = getSharedPreferences("AUTHENTICATION", Context.MODE_PRIVATE)
                         val editor = preferences.edit()
                         editor.putString("AccessToken", result.auth.token)
@@ -75,5 +77,16 @@ class LoginActivity : AppCompatActivity() {
         )
         toast2.setGravity(Gravity.CENTER, 0, 0)
         toast2.show()
+    }
+    override fun onBackPressed() {
+        alert("Вы хотите выйти из приложения?", "Выход") {
+            positiveButton("Да") {
+                val intent = Intent(Intent.ACTION_MAIN)
+                intent.addCategory(Intent.CATEGORY_HOME)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+            }
+            negativeButton("Нет") { }
+        }.show()
     }
 }

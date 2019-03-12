@@ -5,7 +5,11 @@ import java.util.regex.Pattern
 
 object APIConfig {
     val BASE_URL: String = "http://90.150.146.248:8000/api/v1/"
+    val BASE_URL2: String = "http://90.150.146.248:8002/api/v1/"
     var token: String? = null
+    var X_Csrf_Token: String? = null
+    var key: String? = null
+    var data = arrayOf<String>("1","2","3","1","2","3")
     }
 
 object AuthInfo {

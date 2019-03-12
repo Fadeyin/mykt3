@@ -31,6 +31,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import io.reactivex.android.schedulers.AndroidSchedulers
+import org.jetbrains.anko.alert
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -53,7 +54,7 @@ class noticeActivity :  BaseActivity(0) {
             startActivity(LoginIntent)
         }
         setContentView(R.layout.activity_notice)
-        val progressBar = findViewById(R.id.progressBar) as ProgressBar
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
         progressBar.visibility = ProgressBar.VISIBLE
         SetupBottomNavigation()
         APIConfig.token = token
@@ -72,10 +73,20 @@ class noticeActivity :  BaseActivity(0) {
                 adapter?.setNoticeList(result)
             }, { error ->
                 apiService2.getNotice()
-                Log.d("Result", "error")
+                Log.d("Result123", "error")
                 error.printStackTrace()
             }
             )
 
+        }
+        override fun onBackPressed(){
+            alert("Вы хотите выйти из приложения?", "Выход") {
+                positiveButton("Да") {
+                    val intent = Intent(Intent.ACTION_MAIN)
+                    intent.addCategory(Intent.CATEGORY_HOME)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)}
+                negativeButton("Нет") { }
+            }.show()
     }
 }

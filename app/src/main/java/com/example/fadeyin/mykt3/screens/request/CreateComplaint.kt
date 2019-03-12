@@ -12,7 +12,6 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.fadeyin.mykt3.R
 import com.example.fadeyin.mykt3.models.*
-import com.example.fadeyin.mykt3.screens.LoginActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -25,16 +24,9 @@ class CreateComplaint : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val prfs = getSharedPreferences("AUTHENTICATION", Context.MODE_PRIVATE)
-        val token = prfs.getString("AccessToken", null)
-        if (token == null) {
-            val LoginIntent = Intent(this, LoginActivity::class.java)
-            startActivity(LoginIntent)
-        }
-        APIConfig.token = token
         setContentView(R.layout.activity_create_complaint)
-        editTextTitle = findViewById(R.id.title_complaints) as EditText
-        editTextDes = findViewById(R.id.description_complaints) as EditText
+        editTextTitle = findViewById(R.id.title_complaints)
+        editTextDes = findViewById(R.id.description_complaints)
         createBtn = findViewById(R.id.create_button)
         createBtn.setOnClickListener {
             val title = editTextTitle?.text.toString()
@@ -49,7 +41,7 @@ class CreateComplaint : AppCompatActivity() {
                 toast.show()
             }
             else {
-                val progressBar = findViewById(R.id.progressBar3) as ProgressBar
+                val progressBar = findViewById<ProgressBar>(R.id.progressBar3)
                 progressBar.visibility = ProgressBar.VISIBLE
                 val apiService = UserAPIinterface.createServiceWithAuth()
                 apiService.newComplaint(ComplaintRequest(title,description))

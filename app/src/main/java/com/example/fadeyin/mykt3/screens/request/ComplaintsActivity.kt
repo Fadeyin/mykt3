@@ -20,6 +20,7 @@ import com.example.fadeyin.mykt3.screens.request.ComplaintAdapter
 import io.reactivex.schedulers.Schedulers
 import android.widget.ProgressBar
 import io.reactivex.android.schedulers.AndroidSchedulers
+import kotlinx.android.synthetic.main.complaint_item.view.*
 
 
 class ComplaintsActivity : BaseActivity(1) {
@@ -28,14 +29,6 @@ class ComplaintsActivity : BaseActivity(1) {
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val prfs = getSharedPreferences("AUTHENTICATION", Context.MODE_PRIVATE)
-        val token = prfs.getString("AccessToken", null)
-        if (token == null) {
-            val LoginIntent = Intent(this, LoginActivity::class.java)
-            startActivity(LoginIntent)
-        }
-        APIConfig.token = token
         setContentView(R.layout.activity_complaints)
         SetupBottomNavigation()
         val progressBar = findViewById(R.id.progressBar) as ProgressBar
@@ -59,7 +52,6 @@ class ComplaintsActivity : BaseActivity(1) {
                 error.printStackTrace()
             }
             )
-
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             val createComplaintIntent = Intent(this,CreateComplaint::class.java)
