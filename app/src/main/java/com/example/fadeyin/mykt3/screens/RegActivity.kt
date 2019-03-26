@@ -74,7 +74,7 @@ class RegActivity : AppCompatActivity() {
                     override fun onNothingSelected(arg0: AdapterView<*>) {}
                 }
                     }, { error ->
-                Toast.makeText(baseContext, "Ошибка сервера! пожалуйста обновите страницу", Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, "Ошибка $error", Toast.LENGTH_LONG).show()
                 Log.d("Result123", "$error")
                 error.printStackTrace()
             }
@@ -149,7 +149,7 @@ class RegActivity : AppCompatActivity() {
                     }, { error ->
                         val toast = Toast.makeText(
                             applicationContext,
-                            "Ошибка сервера проверьте подключение к интернету",
+                            "Ошибка $error",
                             Toast.LENGTH_LONG
                         )
                         toast.setGravity(Gravity.CENTER, 0, 0)
